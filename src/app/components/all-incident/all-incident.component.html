@@ -1,0 +1,130 @@
+<div class="card m-2">
+  <div class="card-header">
+
+    <!-- Button trigger modal -->
+    <div class="text-right">
+      <button type="button" class="btn btn-warning m-1 btn-circle" (click)="AddIncidentButton()">
+        <fa-icon [icon]="faPlus"></fa-icon>
+      </button>
+    </div>
+
+  </div>
+  <div class="card-body">
+
+
+    <!-- Add edit Model -->
+    <div class="modal " [ngStyle]="{'display':displayStyle}">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true" (click)="closePopup()">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <!-- start of a form -->
+
+            <form>
+              <div class="form-group">
+                <label for="toDoName">Event Name </label>
+                <input type="text" class="form-control" placeholder="To Do Name" name="name"
+                  [(ngModel)]="newIncident.name">
+                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+              </div>
+
+            </form>
+
+            <!-- End of a form -->
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closePopup()">Close</button>
+            <button type="button" class="btn btn-primary" (click)="SeveChange()">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--delete Model-->
+    <div class="modal " [ngStyle]="{'display':deleteDisplayStyle}">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Delete alert</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true" (click)="CloseDeletePopup()">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <!-- start of a form -->
+            <h3>Delete Entry?</h3>
+
+            <!-- End of a form -->
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"
+              (click)="CloseDeletePopup()">Close</button>
+            <button type="button" class="btn btn-danger" (click)="SeveChange()">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container">
+
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+
+            <th scope="col">Name</th>
+            <th scope="col">Action</th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let incident of incidents">
+
+
+            <th><a [routerLink]="['/all-gift', incident.id]">{{incident.name}}</a></th>
+            <th>
+              <button [disabled]="waitFlag" class="btn btn-success mr-1" (click)="EditIncidentButton(incident.id)">
+                <span *ngIf="waitFlag" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                <fa-icon *ngIf="!waitFlag" [icon]="faEdit"></fa-icon>
+              </button>
+
+              <button [disabled]="waitFlag" type="button" class="btn btn-danger mr-1"
+                (click)="DeleteIncidentButton(incident.id)">
+                <span *ngIf="waitFlag" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                <fa-icon *ngIf="!waitFlag" [icon]="fatrashalt"></fa-icon></button>
+
+              <a class="btn btn-info mr-1" [routerLink]="['/all-gift', incident.id]">
+                <span *ngIf="waitFlag" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                <fa-icon *ngIf="!waitFlag" [icon]="faEye"></fa-icon>
+              </a>
+
+              <button [disabled]="waitFlag" class="btn btn-warning mr-1" (click)="PrintButton(incident.id)">
+                <span *ngIf="waitFlag" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                <fa-icon *ngIf="!waitFlag" [icon]="faPrint"></fa-icon></button>
+
+              <button [disabled]="waitFlag" class="btn btn-primary mr-1" (click)="DownloadButton(incident.id)">
+                <span *ngIf="waitFlag" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                <fa-icon *ngIf="!waitFlag" [icon]="faDownload"></fa-icon></button>
+            </th>
+
+          </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+
+
+  </div>
+</div>

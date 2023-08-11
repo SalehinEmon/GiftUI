@@ -1,0 +1,17 @@
+<!-- {{testIncidentId}} -->
+
+<form>
+    <div class="form-group">
+
+        <label for="incidentName">Select Event Name: </label>
+
+        <select [(ngModel)]="selectedIncidentId" id="incidentName" name="incidentName" class="custom-select">
+            <option *ngFor="let incident of allIncident" value="{{incident.id}}">{{incident.name}}</option>
+        </select>
+
+    </div>
+
+    <button (click)="SetIncidentButton()" class="btn btn-success">Set Event</button>
+</form>
+
+<button (click)="RemoveButton()" class="btn btn-success m-2">Remove Button</button>

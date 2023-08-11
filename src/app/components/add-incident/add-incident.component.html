@@ -1,0 +1,13 @@
+<form>
+    <div class="col-md-6">
+
+        <div class="form-group">
+            <label for="amount">Event Name </label>
+            <input [(ngModel)]="currentIncident.name" type="text" class="form-control" id="amount" name="amount"
+                placeholder="Event Name">
+
+        </div>
+
+        <button (click)="AddIncidentButton()" class="btn btn-success">Add Event</button>
+    </div>
+</form>

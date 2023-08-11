@@ -1,0 +1,62 @@
+<!-- <h1>{{incidentId}}</h1> -->
+
+<div class="card m-2">
+    <div class="card-header">
+
+        <!-- Button trigger modal -->
+        <div class="text-right">
+            <button type="button" class="btn btn-warning m-1 btn-circle" (click)="PrintButton()">
+                <span *ngIf="waitFlag" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                <fa-icon *ngIf="!waitFlag" [icon]="faPrint"></fa-icon>
+            </button>
+
+
+            <button class="btn btn-success m-1 btn-circle" type="button" [disabled]="waitFlag" (click)="DownloadButton()">
+                <span *ngIf="waitFlag" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+
+                <fa-icon *ngIf="!waitFlag" [icon]="faDownload"></fa-icon>
+            </button>
+
+        </div>
+
+    </div>
+    <div class="card-body">
+
+
+
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Gift Type</th>
+                    <th>Payer's Name</th>
+                    <th>Address</th>
+                    <th>Phone Number</th>
+                    <th>E-Mail Address</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let gift of allGiftByIncidentId">
+                    <th>{{gift.giftTypeId}}</th>
+                    <td>{{gift.giftPayer}}</td>
+                    <td>{{gift.address}}</td>
+                    <td>{{gift.phoneNumber}}</td>
+                    <td>{{gift.emailAddress}}</td>
+                    <td>{{gift.amount}}</td>
+                </tr>
+
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>Total</th>
+                    <th>{{totalAmount}}</th>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
